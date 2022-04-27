@@ -1,0 +1,160 @@
+@import './_nullstyle.scss';
+
+body{
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 14px;
+
+}
+
+.content {
+   margin: 90px 90px 0 90px;
+   max-width: 1170px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.main{
+   margin: 0 0 0 5px;
+   display: flex;
+   flex-direction: column;
+
+   &__element{
+      display: flex;
+
+      margin: 40px 0 0 0;
+
+      &-status-text{
+         margin: 20px 0 0 0;
+      }
+
+      &-horizontal-line{
+         border: 1px solid #E5E4E4;
+         width: 100%;
+      }
+
+      .bold{
+         font-size: 30px;
+         font-weight: 700;
+      }
+      .topic-name {
+         font-size: 21px;
+      }
+   }
+}
+
+.subelement{
+   
+   &__first{
+      width: 225px;
+      margin: 5px 0 0 0;
+   }
+   &__second{
+      width: 340px;
+      input {
+         width: 340px;
+         border: 1px solid #999;
+         height: 31px;
+         padding: 0 0 0 12px;
+         font-size: 16px;
+         line-height: 19px;
+      }
+   }
+
+   &__third{
+      width: 350px;
+      margin: 0 0 0 18px;
+      p {
+         color: #999;
+         font-size: 12px;
+         line-height: 20px;
+         margin: 5px 0 0 0;
+      }
+   }
+   &-greeting-hello{
+      color: #666666;
+   }
+   &-change-status-button{
+      align-self: flex-end;
+      border-bottom: dashed #0C77BB;
+      color: #0C77BB;
+   }
+   &-status{
+      padding: 0 0 0 12px;
+   }
+   &__error{
+      p{
+         font-size: 12px;
+         color: #FF0000;
+         padding: 4px 0 0 0;
+      }
+   }
+}
+
+.container {
+   padding-left: 30px;
+   position: relative;
+   cursor: pointer;
+   font-size: 16px;
+   user-select: none;
+}
+.container input {
+   position: absolute;
+   opacity: 0;
+   cursor: pointer;
+   height: 0;
+   width: 0;
+}
+.checkmark {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 20px;
+   width: 20px;
+   background-color: #eee;
+   border: 1px solid #7e7e7e;
+   &:after {
+      content: "";
+      position: absolute;
+      display: none;
+   }
+   
+}
+
+.container input:checked ~ .checkmark:after {
+   display: block;
+}
+
+.container .checkmark:after {
+   left: 5px;
+   top: 5px;
+   width: 10px;
+   height: 10px;
+   background: url('../img/vector.svg') no-repeat;
+}
+
+.button-submit-changer{
+   width: 120px;
+   height: 40px;
+   font-size: 18px;
+   border: 1px solid green;
+   background: #71C838; 
+   box-shadow: 0px 1px 0px #539D22;
+   color: #fff;
+   position: relative;
+   cursor: pointer;
+   span {
+      color: #fff;
+      text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+      font-size: 18px;
+   }
+   &:active{
+      top: 2px;
+      box-shadow: 0px 0px 0px black;
+   }
+
+}
+
+#input-error{
+   border: 1px solid #FF0000;
+}

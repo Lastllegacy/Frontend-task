@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./css/style.css">
+   <title>Frontend-task</title>
+</head>
+<body>
+   <div class="content">
+      <div class="main">
+         <div class="main__element main__element-greeting">
+            <div class="subelement__first subelement-greeting-hello bold"> Здравствуйте, </div>
+            <div class="subelement__second subelement-human-number bold">Человек №3596941</div>
+            <div class="subelement__third "> <span class="subelement-change-status-button">Сменить статус</span> </div>
+         </div>
+         <div class="main__element main__element-status-text">
+            <div class="subelement__first"></div>
+            <div class="subelement__second subelement-status"> <p>Прежде чем действовать, надо понять</p> </div>
+         </div>
+         <form action="" novalidate id="form-update">
+            <div class="main__element main__element-city">
+               <div class="subelement__first topic-name"><p>Ваш город</p></div>
+               <div class="subelement__second topic-name"> <input type="text" class="city-choose"  name="city-choose"> </div>
+               <div class="subelement__third"></div>
+            </div>
+            <div class="main__element main__element-university">
+               <div class="subelement__first topic-name"><p>Ваш университет</p></div>
+               <div class="subelement__second topic-name"> <input type="text" class="university-choose"  name="university-choose"> </div>
+               <div class="subelement__third"></div>
+            </div>
+            <div class="main__element main__element-horizontal-line">
+            </div>
+            <div class="main__element main__element-password">
+               <div class="subelement__first topic-name"><p>Пароль</p></div>
+               <div class="subelement__second topic-name"> 
+                  <input type="password" class="password-input" required name="password-choose">
+                  <div class="subelement__error"> <p class="password"></p> </div>
+               </div>
+               <div class="subelement__third"> <p> Ваш новый пароль должен содержать не менее 5 символов. </p></div>
+            </div>
+            <div class="main__element main__element-checked-password">
+               <div class="subelement__first topic-name"><p>Пароль ещё раз</p></div>
+               <div class="subelement__second topic-name"> 
+                  <input type="password" class="checked-password-input" required name="checked-password-choose">
+                  <div class="subelement__error"> <p class="checked-password"></p> </div>
+               </div>
+               <div class="subelement__third"> 
+                  <p> Повторите пароль, пожалуйста, это обезопасит вас с нами
+                  на случай ошибки. </p>
+               </div>
+            </div>
+            <div class="main__element main__element-horizontal-line">
+            </div>
+            <div class="main__element main__element-mail">
+               <div class="subelement__first topic-name"><p>Электронная почта</p></div>
+               <div class="subelement__second topic-name">
+                  <input type="email" class="email-input" required name="mail-adress"> 
+                  <div class="subelement__error"> <p class="email"></p> </div>
+               </div>
+               <div class="subelement__third"> <p> Можно изменить адрес, указанный при регистрации.  </p></div>
+            </div>
+            <div class="main__element main__element-checkbox">
+               <div class="subelement__first topic-name"><p>Я согласен</p></div>
+               <div class="subelement-checkbox">
+                  <label class="container">принимать актуальную информацию на емейл
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                  </label>
+               </div>
+            </div>
+            <div class="main__element main__element-button-box">
+               <div class="subelement__first"></div>
+               <div class="button-handler">
+                  <input type="submit" class="button-submit-changer" value="Изменить"></input>
+               </div>
+               <div class="subelement__third">
+                  <p class="up-time-log">Lorem ipsum dolor sit amet </p>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+   <script src="./js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
