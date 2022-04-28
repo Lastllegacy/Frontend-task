@@ -1,11 +1,20 @@
-const passwordInput = document.querySelector('.password-input')
-const checkedPasInput = document.querySelector('.checked-password-input')
-const emailInput = document.querySelector('.email-input')
+const passwordInput = document.querySelector('.password-input');
+const checkedPasInput = document.querySelector('.checked-password-input');
+const emailInput = document.querySelector('.email-input');
 
-const pasError = document.querySelector('.password')
-const chPasError = document.querySelector('.checked-password')
-const emailError = document.querySelector('.email')
+const pasError = document.querySelector('.password');
+const chPasError = document.querySelector('.checked-password');
+const emailError = document.querySelector('.email');
 const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ ;
+
+const popupInput = document.querySelector('.input-status');
+const changeBox = document.querySelector('.subelement-change-status-button');
+const statusText = document.querySelector('.text-of-status')
+
+changeBox.addEventListener('click', () => {
+   popupInput.value = statusText.textContent;
+})
+
 
 const form = document.getElementById('form-update');
 let pasPoint = 0;

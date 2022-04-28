@@ -75,11 +75,11 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  min-height: 105%;
 }
 
 .content {
-  margin: 90px 90px 0 90px;
-  max-width: 1170px;
+  margin: 50px 70px 140px 70px;
 }
 
 .main {
@@ -98,6 +98,14 @@ body {
   display: -ms-flexbox;
   display: flex;
   margin: 40px 0 0 0;
+}
+
+.main__element:first-child {
+  margin: 0;
+}
+
+.main__element-city {
+  margin: 20px 0 0 0;
 }
 
 .main__element-status-text {
@@ -152,6 +160,9 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   position: relative;
 }
 
@@ -175,18 +186,20 @@ body {
   color: #0C77BB;
 }
 
-.subelement-input-change-status {
+.subelement-popup-input {
   position: absolute;
-  left: 0;
   top: 40px;
-  width: 140px;
-  height: 40px;
-  border: 1px solid black;
 }
 
-.subelement-input-change-status input.input-status {
-  width: 90px;
+.subelement-popup-input input.input-status {
+  font-size: 12px;
+  height: 40px;
+  width: 250px;
+  padding: 5px;
+  text-align: justify;
   border: 1px solid black;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+          box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 .subelement-status {
@@ -277,10 +290,10 @@ body {
 
 @media screen and (max-width: 1200px) {
   .content {
-    margin: 70px 70px 0 70px;
+    margin: 35px 70px 0 70px;
   }
   .main__element {
-    margin: 30px 0 0 0;
+    margin: 25px 0 0 0;
   }
   .main__element .bold {
     font-size: 26px;
@@ -303,8 +316,6 @@ body {
   }
   .subelement__second input {
     width: 270px;
-    border: 1px solid #999;
-    height: 31px;
     padding: 0 0 0 12px;
     font-size: 14px;
   }
@@ -319,10 +330,10 @@ body {
 
 @media screen and (max-width: 900px) {
   .content {
-    margin: 45px 45px;
+    margin: 25px 45px;
   }
   .main__element {
-    margin: 25px 0 0 0;
+    margin: 20px 0 0 0;
   }
   .main__element .bold {
     font-size: 24px;
@@ -338,6 +349,7 @@ body {
   }
   .subelement__second input {
     width: 230px;
+    height: 30px;
     font-size: 12px;
   }
   .subelement__second-status p {
@@ -348,7 +360,11 @@ body {
     margin: 0 0 0 14px;
   }
   .subelement__third p {
-    margin: 3px 0 0 0;
+    margin: 0;
+    line-height: 16px;
+  }
+  .subelement__third .up-time-log {
+    margin: 4px 0 0 0;
   }
 }
 
@@ -357,7 +373,7 @@ body {
     margin: 15px 15px;
   }
   .main__element {
-    margin: 20px 0 0 0;
+    margin: 15px 0 0 0;
   }
   .main__element .bold {
     font-size: 18px;
@@ -376,11 +392,16 @@ body {
   }
   .subelement__second input {
     width: 190px;
+    height: 25px;
     padding: 0 0 0 10px;
+  }
+  .subelement__second-status p {
+    margin: 4px 0 0 0;
+    font-size: 8px;
   }
   .subelement__third {
     width: 160px;
-    margin: 0 0 0 15px;
+    margin: 0 0 0 12px;
   }
   .subelement__third p {
     font-size: 10px;
@@ -389,5 +410,59 @@ body {
   }
   .container .agreement-text {
     font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 545px) {
+  .main__element {
+    margin: 13px 0 0 0;
+  }
+  .main__element .bold {
+    font-size: 11px;
+  }
+  .main__element-status-text {
+    margin: 8px 0 0 0;
+  }
+  .main__element .topic-name {
+    font-size: 9px;
+  }
+  .subelement__first {
+    width: 80px;
+  }
+  .subelement__second {
+    width: 120px;
+  }
+  .subelement__second input {
+    width: 120px;
+    height: 18px;
+    padding: 0 0 0 6px;
+  }
+  .subelement__third {
+    width: 90px;
+    margin: 0 0 0 0px;
+  }
+  .subelement__third p {
+    font-size: 6px;
+    line-height: 8px;
+  }
+  .subelement__third .up-time-log {
+    margin: 4px 0 0 5px;
+  }
+  .subelement-change-status-button {
+    font-size: 10px;
+  }
+  .container {
+    padding-left: 25px;
+  }
+  .container .agreement-text {
+    font-size: 8px;
+  }
+  .button-submit-changer {
+    width: 80px;
+    height: 25px;
+    font-size: 12px;
+  }
+  .button-submit-changer span {
+    font-size: 14px;
   }
 }

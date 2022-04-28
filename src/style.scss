@@ -5,11 +5,11 @@ body{
    font-size: 14px;
    display: flex;
    justify-content: center;
+   min-height: 105%;
 }
 
 .content {
-   margin: 90px 90px 0 90px;
-   max-width: 1170px;
+   margin: 50px 70px 140px 70px;
 }
 
 .main{
@@ -19,7 +19,12 @@ body{
 
    &__element{
       display: flex;
-
+      &:first-child{
+         margin: 0;
+      }
+      &-city{
+         margin: 20px 0 0 0;
+      }
       margin: 40px 0 0 0;
 
       &-status-text{
@@ -70,6 +75,7 @@ body{
       }
       &.change-status-container{
          display: flex;
+         justify-content: center;
          position: relative;
       }
       .up-time-log{
@@ -84,21 +90,23 @@ body{
    }
    &-change-status-button{
       align-self: flex-end;
-      
       border-bottom: dashed #0C77BB;
       color: #0C77BB;
    }
 
-   &-input-change-status{
+   &-popup-input{
       position: absolute;
-      left: 0;
+      // left: -50px;
       top: 40px;
-      width: 140px;
-      height: 40px;
-      border: 1px solid black;
       input.input-status{
-         width: 90px;
+         font-size: 12px;
+         height: 40px;
+         width: 250px;
+         padding: 5px;
+         text-align: justify;
          border: 1px solid black;
+         box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
       }
    }
 
@@ -185,10 +193,10 @@ body{
 
 @media screen and (max-width: 1200px) {
       .content {
-         margin: 70px 70px 0 70px;
+         margin: 35px 70px 0 70px;
       }
       .main__element{
-         margin: 30px 0 0 0;
+         margin: 25px 0 0 0;
          .bold {
             font-size: 26px;
          }
@@ -198,6 +206,7 @@ body{
          .topic-name{
             font-size: 18px;
          }
+
       }
       .container {
          .agreement-text {
@@ -214,8 +223,6 @@ body{
             width: 270px;
             input {
                width: 270px;
-               border: 1px solid #999;
-               height: 31px;
                padding: 0 0 0 12px;
                font-size: 14px;
             }
@@ -234,10 +241,10 @@ body{
 
 @media screen and (max-width: 900px) {
    .content {
-      margin: 45px 45px;
+      margin: 25px 45px;
    }
    .main__element{
-      margin: 25px 0 0 0;
+      margin: 20px 0 0 0;
       .bold {
          font-size: 24px;
       }
@@ -254,6 +261,7 @@ body{
          width: 230px;
          input {
             width: 230px;
+            height: 30px;
             font-size: 12px;
          }
          &-status{
@@ -268,7 +276,11 @@ body{
          width: 200px;
          margin: 0 0 0 14px;
          p{
-            margin: 3px 0 0 0;
+            margin: 0;
+            line-height: 16px;
+         }
+         .up-time-log{
+            margin: 4px 0 0 0;
          }
       }
 }  
@@ -279,7 +291,7 @@ body{
       margin: 15px 15px;
    }
    .main__element{
-      margin: 20px 0 0 0;
+      margin: 15px 0 0 0;
       .bold {
          font-size: 18px;
       }
@@ -299,23 +311,90 @@ body{
          width: 180px;
          input {
             width: 190px;
+            height: 25px;
             padding: 0 0 0 10px;
+         }
+         &-status{
+            p{
+               margin: 4px 0 0 0;
+               font-size: 8px;
+            }
+           
          }
       }
       
       &__third{
          width: 160px;
-         margin: 0 0 0 15px;
+         margin: 0 0 0 12px;
          p{
             font-size: 10px;
             margin: 0 0 0 5px;
             line-height: 15px;
          }
+         
       }
    }  
    .container {
       .agreement-text {
          font-size: 12px;
+      }
+   }
+
+}
+@media screen and (max-width: 545px) {
+   .main__element{
+      margin: 13px 0 0 0;
+      .bold {
+         font-size: 11px;
+      }
+      &-status-text{
+         margin: 8px 0 0 0;
+      }
+      .topic-name{
+         font-size: 9px;
+      }
+   }
+   .subelement{
+
+      &__first{
+         width: 80px;
+      }
+      &__second{
+         width: 120px;
+         input {
+            width: 120px;
+            height: 18px;
+            padding: 0 0 0 6px;
+         }
+      }
+      
+      &__third{
+         width: 90px;
+         margin: 0 0 0 0px;
+         p{
+            font-size: 6px;
+            line-height: 8px;
+         }
+         .up-time-log{
+            margin: 4px 0 0 5px;
+         }
+      }
+      &-change-status-button{
+         font-size: 10px;
+      }
+   }  
+   .container {
+      padding-left: 25px;
+      .agreement-text {
+         font-size: 8px;
+      }
+   }
+   .button-submit-changer{
+      width: 80px;
+      height: 25px;
+      font-size: 12px;
+      span {
+         font-size: 14px;
       }
    }
 
