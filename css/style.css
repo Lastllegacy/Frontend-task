@@ -69,20 +69,17 @@ h1, h2, h3, h4, h5, h6 {
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .content {
   margin: 90px 90px 0 90px;
   max-width: 1170px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 .main {
@@ -151,8 +148,24 @@ body {
   margin: 5px 0 0 0;
 }
 
+.subelement__third.change-status-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.subelement__third .up-time-log {
+  margin: 10px 0 0 0;
+}
+
 .subelement-greeting-hello {
   color: #666666;
+}
+
+.subelement-human-number {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 .subelement-change-status-button {
@@ -160,6 +173,20 @@ body {
       align-self: flex-end;
   border-bottom: dashed #0C77BB;
   color: #0C77BB;
+}
+
+.subelement-input-change-status {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 140px;
+  height: 40px;
+  border: 1px solid black;
+}
+
+.subelement-input-change-status input.input-status {
+  width: 90px;
+  border: 1px solid black;
 }
 
 .subelement-status {
@@ -246,4 +273,121 @@ body {
 
 #input-error {
   border: 1px solid #FF0000;
+}
+
+@media screen and (max-width: 1200px) {
+  .content {
+    margin: 70px 70px 0 70px;
+  }
+  .main__element {
+    margin: 30px 0 0 0;
+  }
+  .main__element .bold {
+    font-size: 26px;
+  }
+  .main__element-status-text {
+    margin: 10px 0 0 0;
+  }
+  .main__element .topic-name {
+    font-size: 18px;
+  }
+  .container .agreement-text {
+    font-size: 14px;
+  }
+  .subelement__first {
+    width: 200px;
+    margin: 5px 0 0 0;
+  }
+  .subelement__second {
+    width: 270px;
+  }
+  .subelement__second input {
+    width: 270px;
+    border: 1px solid #999;
+    height: 31px;
+    padding: 0 0 0 12px;
+    font-size: 14px;
+  }
+  .subelement__third {
+    width: 280px;
+    margin: 0 0 0 16px;
+  }
+  .subelement__third p {
+    margin: 3px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .content {
+    margin: 45px 45px;
+  }
+  .main__element {
+    margin: 25px 0 0 0;
+  }
+  .main__element .bold {
+    font-size: 24px;
+  }
+  .main__element-status-text {
+    margin: 10px 0 0 0;
+  }
+  .subelement__first {
+    width: 180px;
+  }
+  .subelement__second {
+    width: 230px;
+  }
+  .subelement__second input {
+    width: 230px;
+    font-size: 12px;
+  }
+  .subelement__second-status p {
+    font-size: 10px;
+  }
+  .subelement__third {
+    width: 200px;
+    margin: 0 0 0 14px;
+  }
+  .subelement__third p {
+    margin: 3px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .content {
+    margin: 15px 15px;
+  }
+  .main__element {
+    margin: 20px 0 0 0;
+  }
+  .main__element .bold {
+    font-size: 18px;
+  }
+  .main__element-status-text {
+    margin: 10px 0 0 0;
+  }
+  .main__element .topic-name {
+    font-size: 14px;
+  }
+  .subelement__first {
+    width: 140px;
+  }
+  .subelement__second {
+    width: 180px;
+  }
+  .subelement__second input {
+    width: 190px;
+    padding: 0 0 0 10px;
+  }
+  .subelement__third {
+    width: 160px;
+    margin: 0 0 0 15px;
+  }
+  .subelement__third p {
+    font-size: 10px;
+    margin: 0 0 0 5px;
+    line-height: 15px;
+  }
+  .container .agreement-text {
+    font-size: 12px;
+  }
 }

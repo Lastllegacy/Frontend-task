@@ -13,13 +13,20 @@
          <div class="main__element main__element-greeting">
             <div class="subelement__first subelement-greeting-hello bold"> Здравствуйте, </div>
             <div class="subelement__second subelement-human-number bold">Человек №3596941</div>
-            <div class="subelement__third "> <span class="subelement-change-status-button">Сменить статус</span> </div>
-         </div>
-         <div class="main__element main__element-status-text">
-            <div class="subelement__first"></div>
-            <div class="subelement__second subelement-status"> <p>Прежде чем действовать, надо понять</p> </div>
+            <div class="subelement__third change-status-container"> 
+               <div class="subelement-change-status-button">Сменить статус</div>
+                  <div class="subelement-input-change-status"> 
+                     <input type="text" class="input-status"> 
+                  </div> 
+            </div>
          </div>
          <form action="" novalidate id="form-update">
+            <div class="main__element main__element-status-text">
+               <div class="subelement__first"></div>
+               <div class="subelement__second subelement__second-status"> 
+                  <p>Прежде чем действовать, надо понять </p> 
+               </div>
+            </div>
             <div class="main__element main__element-city">
                <div class="subelement__first topic-name"><p>Ваш город</p></div>
                <div class="subelement__second topic-name"> <input type="text" class="city-choose"  name="city-choose"> </div>
@@ -64,7 +71,7 @@
             <div class="main__element main__element-checkbox">
                <div class="subelement__first topic-name"><p>Я согласен</p></div>
                <div class="subelement-checkbox">
-                  <label class="container">принимать актуальную информацию на емейл
+                  <label class="container"> <span class="agreement-text"> принимать актуальную информацию на емейл </span> 
                   <input type="checkbox" checked="checked">
                   <span class="checkmark"></span>
                   </label>
