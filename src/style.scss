@@ -1,11 +1,11 @@
 @import './_nullstyle.scss';
+@import './custom-select.scss';
 
 body{
    font-family: Arial, Helvetica, sans-serif;
    font-size: 14px;
    display: flex;
    justify-content: center;
-   min-height: 105%;
 }
 
 .content {
@@ -423,6 +423,14 @@ body{
             width: 120px;
             height: 18px;
             padding: 0 0 0 6px;
+         }
+         .select__toggle{
+            font-size: 8px;
+            line-height: 10px;
+            &::after{
+               width: 0.5rem;
+               height: 0.5rem;
+            }
          }
       }
       

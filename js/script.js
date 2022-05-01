@@ -135,17 +135,16 @@ form.addEventListener('submit', e => {
          data[key] = prop;
       }
       data = JSON.stringify(data, null, 2);
-      console.log(data);
+      console.log(data,);
    }
 })
 
 document.addEventListener('click', e => {
-   if (!e.target.closest('.subelement-change-status-button') && counter ) {
+   if (!e.target.closest('.subelement-change-status-button')) {
       anotherBox.classList.remove('show');
       counter = 0;
     }
 });
-
 
 // From this string starting to be js for custom-select 
 
@@ -325,14 +324,37 @@ const init = () => {
       })
 
       const select1 = new CustomSelect('#select-1', {
-         name: 'car',
+         name: 'city-choose',
          options: arrayOfCities // опции
       }); 
    });
 }
- 
 init();
 
+const request = new Request ('http://universities.hipolabs.com/search?country=United+Kingdom');
+
+fetch(request)
+   .then(response => {
+      if(response.status === 200){
+         return response.json()
+      } else {
+         throw new Error('Something went wrong')
+      }
+   })
+   .then(response => {
+      console.log(response[0].name);
+      let arrayOfUniversities = [];
+      for(let key of response){
+         arrayOfUniversities.push([key.name.toLowerCase(),key.name])
+      }
+      const select2 = new CustomSelect('#select-2', {
+         name: 'university-choose',
+         options: arrayOfUniversities // опции университетов
+      })
+   })
+   .catch(error => {
+      console.log(error);
+});
 
 
 
