@@ -5,6 +5,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="./css/style.css">
+   <link rel="stylesheet" href="./css/custom-select.css">
    <title>Frontend-task</title>
 </head>
 <body>
@@ -14,9 +15,10 @@
             <div class="subelement__first subelement-greeting-hello bold"> Здравствуйте, </div>
             <div class="subelement__second subelement-human-number bold">Человек №3596941</div>
             <div class="subelement__third change-status-container"> 
-               <div class="subelement-change-status-button">Сменить статус</div>
+               <div class="subelement-change-status-button"> <span>Сменить статус</span> </div>
                   <div class="subelement-popup-input"> 
-                     <input type="text" class="input-status"> 
+                     <textarea class="input-status"></textarea>
+                     <button>Изменить</button>
                   </div> 
             </div>
          </div>
@@ -24,12 +26,17 @@
             <div class="main__element main__element-status-text">
                <div class="subelement__first"></div>
                <div class="subelement__second subelement__second-status"> 
-                  <p class="text-of-status">Прежде чем действовать, надо понять lorem asdasdasd adasd</p> 
+                  <p class="text-of-status">Прежде чем действовать, надо понять задание</p> 
                </div>
             </div>
             <div class="main__element main__element-city">
-               <div class="subelement__first topic-name"><p>Ваш город</p></div>
-               <div class="subelement__second topic-name"> <input type="text" class="city-choose"  name="city-choose"> </div>
+               <div class="subelement__first topic-name">
+                  <p>Ваш город</p>
+               </div>
+               <div class="subelement__second topic-name">  
+                  <div id="select-1">
+                   </div>
+               </div>
                <div class="subelement__third"></div>
             </div>
             <div class="main__element main__element-university">
