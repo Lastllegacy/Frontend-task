@@ -1,10 +1,4 @@
-const passwordInput = document.querySelector('.password-input');
-const checkedPasInput = document.querySelector('.checked-password-input');
-const emailInput = document.querySelector('.email-input');
 
-const pasError = document.querySelector('.password');
-const chPasError = document.querySelector('.checked-password');
-const emailError = document.querySelector('.email');
 const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ ;
 
 const popupInput = document.querySelector('.input-status');
@@ -26,82 +20,81 @@ let chPasPoint = 0;
 let mailPoint = 0;
 let counter = 0;
 
-changeBox.addEventListener('click', () => {
-   popupInput.value = statusText.textContent;
-   if (counter == 0) {
-      anotherBox.classList.add('show');
-      counter = 1;
-   } else {
-      anotherBox.classList.remove('show');
-      counter = 0;
+const passInput = '.password-input';
+const passError = '.password-error';
+
+const confPassInput = '.checked-password-input';
+const confPassError = '.checked-password-error';
+
+const mailInput = '.email-input';
+const mailError = '.email-error'
+
+
+class validationHelper1 {
+
+   constructor(input,error) {
+      this.input = document.querySelector(input);
+      this.error = document.querySelector(error);
+   }
+
+   checkBlank() {
+      if(this.input.value == '') {
+         this.input.id = 'input-error';
+         this.error.textContent = 'Введите значение';
+         return true
+      } else return false
+   }
+   passwordLength() {
+      if (this.checkBlank()) {
+         this.checkBlank()
+      } else if(this.input.value.length < 5){
+         this.input.id = 'input-error';
+         this.error.textContent = 'Используйте не менее 5 символов';
+      } else {
+         this.input.id = null;
+         this.error.textContent = null;
+         return true;
+      }
+   }
+   confirmationPassword() {
+      
+   }
+}
+
+document.addEventListener('input', (e) => {
+   if(e.target.closest(passInput)) {
+      const passwordObject = new validationHelper1(passInput,passError);
+      passwordObject.passwordLength();
+   }
+   if(e.target.closest('.checked-password-input')) {
+      if (checkedPasInput.value != passwordInput.value){
+         checkedPasInput.id = 'input-error';
+         chPasError.textContent = 'Пароли не совпадают';
+      } else {
+         chPasPoint = 1
+         checkedPasInput.id = '';
+         chPasError.textContent = null;
+      }
+   }
+   if(e.target.closest('.email-input')) {
+      if (!(emailInput.value.match(emailPattern))){
+         emailInput.id = 'input-error';
+         emailError.textContent = 'Неверный email'
+      } else if (emailInput.value == ''){
+         emailInput.id = 'input-error';
+         emailError.textContent = 'Укажите E-mail'
+      } else {
+         mailPoint = 1;
+         emailInput.id = ''
+         emailError.textContent = null
+      }
    }
 })
-
-closerBox.addEventListener('click', () => {
-   if(counter) {
-      anotherBox.classList.remove('show');
-      counter = 0;
-      statusText.textContent = popupInput.value;
-   }
-})
-
-
-passwordInput.addEventListener('input', (e) => {
-   e.preventDefault();
-   
-   if (passwordInput.value == ''){
-      passwordInput.id = 'input-error';
-      pasError.textContent = 'Укажите пароль';
-   } else if (passwordInput.value.length < 5){
-      passwordInput.id = 'input-error';
-      pasError.textContent = 'Используйте не менее 5 символов';
-   } else {
-      pasPoint = 1
-      passwordInput.id = null;
-      pasError.textContent = null;
-   }
-})
-
-checkedPasInput.addEventListener('input', (e) => {
-   e.preventDefault();
-
-   if (checkedPasInput.value != passwordInput.value){
-      checkedPasInput.id = 'input-error';
-      chPasError.textContent = 'Пароли не совпадают';
-   } else {
-      chPasPoint = 1
-      checkedPasInput.id = '';
-      chPasError.textContent = null;
-   }
-})
-
-emailInput.addEventListener('input', (e) => {
-   e.preventDefault();
-
-
-   if (!(emailInput.value.match(emailPattern))){
-      emailInput.id = 'input-error';
-      emailError.textContent = 'Неверный email'
-   } else if (emailInput.value == ''){
-      emailInput.id = 'input-error';
-      emailError.textContent = 'Укажите E-mail'
-   } else {
-      mailPoint = 1;
-      emailInput.id = ''
-      emailError.textContent = null
-   }
-} )
 
 form.addEventListener('submit', e => {
-   if (!pasPoint) {
+   if (!new validationHelper1(passInput,passError).passwordLength()) {
       e.preventDefault();
-      if (passwordInput.value == ''){
-         passwordInput.id = 'input-error';
-         pasError.textContent = 'Укажите пароль';
-      } else if (passwordInput.value.length < 5){
-         passwordInput.id = 'input-error';
-         pasError.textContent = 'Используйте не менее 5 символов';
-      } 
+      new validationHelper1(passInput,passError).passwordLength();
    }
    else if (!chPasPoint){
       e.preventDefault()
@@ -137,14 +130,33 @@ form.addEventListener('submit', e => {
       data = JSON.stringify(data, null, 2);
       console.log(data,);
    }
-})
+});
 
 document.addEventListener('click', e => {
    if (!e.target.closest('.subelement-change-status-button')) {
       anotherBox.classList.remove('show');
       counter = 0;
-    }
+   }
+   if (e.target.closest('.subelement-change-status-button span')) {
+      popupInput.value = statusText.textContent;
+      if (counter == 0) {
+         anotherBox.classList.add('show');
+         counter = 1;
+      } else {
+         anotherBox.classList.remove('show');
+         counter = 0;
+      }
+   }
+   if(e.target.closest('.subelement-popup-input button')){
+      if(counter) {
+         anotherBox.classList.remove('show');
+         counter = 0;
+         statusText.textContent = popupInput.value;
+      }
+   }
+
 });
+
 
 // From this string starting to be js for custom-select 
 
@@ -293,91 +305,66 @@ document.addEventListener('click', (e) => {
 });
 
 
-const loadJSON = (callback) => {
-   const xObj = new XMLHttpRequest();
-   xObj.overrideMimeType("application/json");
-   // 1. replace './data.json' with the local path of your file
-   xObj.open('GET', './js/cities.json', true);
-   xObj.onreadystatechange = () => {
-       if (xObj.readyState === 4 && xObj.status === 200) {
-           // 2. call your callback function
-           callback(xObj.responseText);
-       }
-   };
-   xObj.send(null);
+
+
+// callback is a function that passes to another func as an argument
+// К примеру здесь, мы передаём значение response.json() из fetch запроса в jsonCallback только если получили положительный ответ, иначе возвращаем null
+// fetch - глобальный объект в JS, позволяет делать сетевые запросы и круче чем XMLHttpRequest
+// Передавая в fetch ссылку, куда мы хотим попасть, при помощи метода .then в качестве аргумента мы принимаем ответ(response) и далее проверяем, успешно ли мы добрались по ссылки. При помощи метода .ok аргумента мы выполняем проверку
+// Затем возвращаем .json() в нашем случае, так как по ссылке находился некоторый файл json 
+// Самое главное, что здесь возвращаемое значение будет равно не json-файлу а Promise
+// Promise - это не завершённый асинхронный код, то есть запрос, мы как бы даём обещание, что там что-то лежит
+// Для того, чтобы продолжить работать с данными, которые мы получили мы должны дождаться окончательного ответа, для этого мы пишем await перед возвращаемым значением, чтобы дать понять JS, что нужно дождаться окончательного ответа и затем выполнять код связанный с этим ответом
+
+async function loaderJson (url, jsonCallback) {
+   const URL = url;
+   await fetch(URL)
+      .then(response => response.ok ? jsonCallback(response.json()) : null);
 }
 
 
+// Далее здесь в анонимной функции мы получаем значение переданное в колбэк как result и работаем с ним
+// as an argument loadJson takes an anonymous function and then sort it and creates custom-select with options we need
+loaderJson('./js/cities.json', (async (resultJson) => {
+   let JsonHelper =  await resultJson
+   let arrayHelper = [];
+   let most = 0;
+   let neededCity = '';
 
-const init = () => {
-   loadJSON((response) => {
-      // 3. parse JSON string into JSON Object
-      //  console.log('response =', response);
-      const json = JSON.parse(response);
-      //  console.log('your local JSON =', JSON.stringify(json, null, 4));
-      // 4. render to your page
-      let arrayOfCities = [];
-      json.forEach((key) => {
-         if(key.population > 50000){
-            arrayOfCities.push([key.city.toLowerCase(),key.city]);
-         }
-      })
-
-      const select1 = new CustomSelect('#select-1', {
-         name: 'city-choose',
-         options: arrayOfCities // опции
-      }); 
-   });
-}
-init();
-
-const request = new Request ('http://universities.hipolabs.com/search?country=United+Kingdom');
-
-fetch(request)
-   .then(response => {
-      if(response.status === 200){
-         return response.json()
-      } else {
-         throw new Error('Something went wrong')
+   for (let item of JsonHelper) {
+      if(item.population > most) {
+         most = Number(item.population);
+         neededCity = item.city;
       }
-   })
-   .then(response => {
-      console.log(response[0].name);
-      let arrayOfUniversities = [];
-      for(let key of response){
-         arrayOfUniversities.push([key.name.toLowerCase(),key.name])
+   }
+
+   for (let item of JsonHelper){
+      if(item.population > 50000 && item.city != neededCity) {
+         arrayHelper.push([item.city,item.city]);
       }
-      const select2 = new CustomSelect('#select-2', {
-         name: 'university-choose',
-         options: arrayOfUniversities // опции университетов
-      })
+   }
+   arrayHelper.sort();
+
+   const arrayOfCities = [[neededCity,neededCity]].concat(arrayHelper);
+
+   console.log(arrayOfCities);
+
+   const select1 = new CustomSelect('#select-1', {
+      name: 'city-choose',
+      options: arrayOfCities // опции университетов
    })
-   .catch(error => {
-      console.log(error);
-});
+}))
 
+loaderJson('http://universities.hipolabs.com/search?country=United+Kingdom' , (async (resultJson) => {
+   let JsonHelper = await resultJson;
+   let arrayOfUniversities = [];
+   for (let item of JsonHelper) {
+      arrayOfUniversities.push([item.name,item.name])
+   }
+   const select2 = new CustomSelect('#select-2', {
+      name: 'university-choose',
+      options: arrayOfUniversities // опции университетов
+   })
 
+} ))
 
-
-
-
-
-// let object;
-// let arrayOfCities = [['hehe','hehe']];
-// let newArray = [];
-// let httpRequest = new XMLHttpRequest(); // asynchronous request
-// httpRequest.open("GET", "./js/cities.json", true);
-// httpRequest.send();
-// httpRequest.addEventListener("readystatechange", function() {
-//     if (this.readyState === this.DONE) {
-//       	// when the request has completed
-//         arrayOfCities = [] 
-//         object = JSON.parse(this.response);
-//         object.forEach((key) => {
-//            if(key.population > 50000){
-//             arrayOfCities.push([key.city.toLowerCase(),key.city]);
-//            }
-//         })
-//         console.log(arrayOfCities);
-//     }
-// });
