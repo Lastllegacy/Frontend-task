@@ -1,5 +1,5 @@
 
-const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ ;
+
 
 const popupInput = document.querySelector('.input-status');
 const changeBox = document.querySelector('.subelement-change-status-button span');
@@ -27,16 +27,16 @@ const confPassInput = '.checked-password-input';
 const confPassError = '.checked-password-error';
 
 const mailInput = '.email-input';
-const mailError = '.email-error'
+const mailError = '.email-error';
 
 
-class validationHelper1 {
+class validationHelper {
 
    constructor(input,error) {
       this.input = document.querySelector(input);
       this.error = document.querySelector(error);
    }
-
+   
    checkBlank() {
       if(this.input.value == '') {
          this.input.id = 'input-error';
@@ -44,93 +44,65 @@ class validationHelper1 {
          return true
       } else return false
    }
-   passwordLength() {
+
+   passwordLength(input,error) {
+      input = this.input;
+      error = this.error;
       if (this.checkBlank()) {
          this.checkBlank()
-      } else if(this.input.value.length < 5){
-         this.input.id = 'input-error';
-         this.error.textContent = 'Используйте не менее 5 символов';
+      } else if(input.value.length < 5){
+         input.id = 'input-error';
+         error.textContent = 'Используйте не менее 5 символов';
       } else {
-         this.input.id = null;
-         this.error.textContent = null;
+         input.id = null;
+         error.textContent = null;
          return true;
       }
    }
-   confirmationPassword() {
-      
+
+   confirmationPassword(input,error) {
+      input = this.input;
+      error = this.error;
+      if (this.checkBlank()) {
+         this.checkBlank()
+      } else if(input.value != document.querySelector(passInput).value){
+         input.id = 'input-error';
+         error.textContent = 'Пароли не совпадают';
+      } else {
+         input.id = null;
+         error.textContent = null;
+         return true;
+      }
+   }
+
+   mailCheck(input,error){
+      const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/ ;
+      input = this.input;
+      error = this.error;
+      if (this.checkBlank()) {
+         this.checkBlank();
+      } else if (!(input.value.match(emailPattern))){
+         input.id = 'input-error';
+         error.textContent = 'Неверный email'
+      } else {
+         input.id = null;
+         error.textContent = null;
+         return true
+      }
    }
 }
 
 document.addEventListener('input', (e) => {
    if(e.target.closest(passInput)) {
-      const passwordObject = new validationHelper1(passInput,passError);
-      passwordObject.passwordLength();
-   }
-   if(e.target.closest('.checked-password-input')) {
-      if (checkedPasInput.value != passwordInput.value){
-         checkedPasInput.id = 'input-error';
-         chPasError.textContent = 'Пароли не совпадают';
-      } else {
-         chPasPoint = 1
-         checkedPasInput.id = '';
-         chPasError.textContent = null;
-      }
-   }
-   if(e.target.closest('.email-input')) {
-      if (!(emailInput.value.match(emailPattern))){
-         emailInput.id = 'input-error';
-         emailError.textContent = 'Неверный email'
-      } else if (emailInput.value == ''){
-         emailInput.id = 'input-error';
-         emailError.textContent = 'Укажите E-mail'
-      } else {
-         mailPoint = 1;
-         emailInput.id = ''
-         emailError.textContent = null
-      }
+      new validationHelper(passInput,passError).passwordLength();
+   } else if(e.target.closest(confPassInput)) {
+      new validationHelper(confPassInput,confPassError).confirmationPassword();
+   } else if(e.target.closest(mailInput)) {
+      new validationHelper(mailInput,mailError).mailCheck();
    }
 })
 
-form.addEventListener('submit', e => {
-   if (!new validationHelper1(passInput,passError).passwordLength()) {
-      e.preventDefault();
-      new validationHelper1(passInput,passError).passwordLength();
-   }
-   else if (!chPasPoint){
-      e.preventDefault()
-      if (checkedPasInput.value != passwordInput.value){
-         checkedPasInput.id = 'input-error';
-         chPasError.textContent = 'Пароли не совпадают';
-      } else {
-         chPasPoint = 1
-         checkedPasInput.id = '';
-         chPasError.textContent = null;
-      }
-   }
-   else if(!mailPoint) {
-      e.preventDefault()
-      if (!(emailInput.value.match(emailPattern))){
-         emailInput.id = 'input-error';
-         emailError.textContent = 'Неверный email'
-      } else if (emailInput.value == ''){
-         emailInput.id = 'input-error';
-         emailError.textContent = 'Укажите E-mail'
-      } else {
-         mailPoint = 1;
-         emailInput.id = ''
-         emailError.textContent = null;
-      }
-   }
-   else if (mailPoint && chPasPoint && pasPoint) {
-      dateOfChange.textContent = 'последние изменения ' + dateNow.toLocaleDateString() + ' в ' + dateNow.toLocaleTimeString();
-      let fd = new FormData(form);
-      for (let [key, prop] of fd) {
-         data[key] = prop;
-      }
-      data = JSON.stringify(data, null, 2);
-      console.log(data,);
-   }
-});
+
 
 document.addEventListener('click', e => {
    if (!e.target.closest('.subelement-change-status-button')) {
@@ -304,7 +276,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-
+let select1,select2;
 
 
 // callback is a function that passes to another func as an argument
@@ -347,9 +319,7 @@ loaderJson('./js/cities.json', (async (resultJson) => {
 
    const arrayOfCities = [[neededCity,neededCity]].concat(arrayHelper);
 
-   console.log(arrayOfCities);
-
-   const select1 = new CustomSelect('#select-1', {
+   select1 = new CustomSelect('#select-1', {
       name: 'city-choose',
       options: arrayOfCities // опции университетов
    })
@@ -361,10 +331,39 @@ loaderJson('http://universities.hipolabs.com/search?country=United+Kingdom' , (a
    for (let item of JsonHelper) {
       arrayOfUniversities.push([item.name,item.name])
    }
-   const select2 = new CustomSelect('#select-2', {
+   select2 = new CustomSelect('#select-2', {
       name: 'university-choose',
       options: arrayOfUniversities // опции университетов
    })
 
 } ))
 
+form.addEventListener('submit', e => {
+   const passwordObject = new validationHelper(passInput,passError).passwordLength();
+   const confirmationObject = new validationHelper(confPassInput,confPassError).confirmationPassword();
+   const mailObject = new validationHelper(mailInput,mailError).mailCheck();
+   if (!passwordObject) {
+      e.preventDefault();
+      passwordObject;
+   }
+   else if (!confirmationObject){
+      e.preventDefault();
+      confirmationObject;
+   }
+   else if(!mailObject) {
+      e.preventDefault();
+      mailObject;
+   }
+   else if (passwordObject && confirmationObject && mailObject && select1.value && select2.value ) {
+      dateOfChange.textContent = 'последние изменения ' + dateNow.toLocaleDateString() + ' в ' + dateNow.toLocaleTimeString();
+      let fd = new FormData(form);
+      for (let [key, prop] of fd) {
+         data[key] = prop;
+      }
+      data['city-choose'] = select1.value;
+      data['university-choose'] = select2.value;
+      data = JSON.stringify(data, null, 2);
+      console.log(data);
+      
+   }
+});
