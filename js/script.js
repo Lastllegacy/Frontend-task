@@ -259,7 +259,7 @@ CustomSelect.template = params => {
       selectedValue = option[0];
       selectedContent = option[1];
     }
-    items.push(`<;i class="select__option${selectedClass}" data-select="option" data-value="${option[0]}" data-index="${index}"> ${option[1]}</li> `);
+    items.push(`<li class="select__option${selectedClass}" data-select="option" data-value="${option[0]}" data-index="${index}"> ${option[1]}</li> `);
   });
   return `<button type="button" class="select__toggle" name="${name}" value="${selectedValue}" data-select="toggle" data-index="${selectedIndex}">${selectedContent}</button>
   <div class="select__dropdown">
